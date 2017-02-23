@@ -58,7 +58,6 @@ app.post('/api/grudges', (request, response) => {
   const grudge = request.body;
   app.locals.grudges.push(grudge);
   response.status(200).json(app.locals.grudges);
-  console.log(app.locals.grudges);
 });
 
 
