@@ -1,5 +1,10 @@
+'use strict'
+const http = require('http')
 const express = require('express');
 const app = express();
+const path = require('path');
+const environment = process.env.NODE_ENV || 'development';
+
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
@@ -7,6 +12,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Burn Book';
+
+app.use(express.static(path.join(__dirname, '/public')));
+
+const port = process.env.PORT || 3000;
+const server = http.createServer(app)
+  .listen(port, () => {
+    console.log(`Listening on port ${port}.`)
+  });
 
 app.locals.grudges = [
   {
@@ -30,7 +43,7 @@ app.get('/', (request, response) => {
 });
 
 app.get('/api/grudges', (request, response) => {
-  response.status(200).json(app.locals.grudges)
+  response.status(200).json(app.locals.grudges);
 });
 
 
@@ -42,13 +55,9 @@ app.get('/api/grudges/:id', (request, response) => {
 });
 
 app.post('/api/grudges', (request, response) => {
-  const grudge = request.body
-  app.locals.grudges.push(grudge)
-  response.status(200).json(app.locals.grudges)
-});
-
-app.listen(app.get('port'), () => {
-  console.log(`${app.locals.title} is running on ${app.get('port')}.`);
+  const grudge = request.body;
+  app.locals.grudges.push(grudge);
+  response.status(200).json(app.locals.grudges);
 });
 
 
