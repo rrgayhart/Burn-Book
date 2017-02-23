@@ -25,16 +25,16 @@ app.locals.grudges = [
   {
     id: 1,
     name: 'Chloe',
-    deed: 'stinky farts',
+    offense: 'stinky farts',
     date: 'Thu Feb 23 2017 12:21:11 GMT-0700 (MST)',
     status: false
   },
   {
     id: 2,
     name: 'Sam',
-    deed: 'eating the last eggo',
+    offense: 'eating the last eggo',
     date: 'Thu Feb 23 2017 12:21:11 GMT-0700 (MST)',
-    status: false
+    status: true
   }
 ]
 
