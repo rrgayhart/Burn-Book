@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
+    <title>Burn Book</title>
+  </head>
+  <body>
+    <h1>Burn Book</h1>
+    <section class="form-container">
+        <article id="instructions"> Keep track of the people who burned you and
+        whether they have been forgiven. </article>
+
+        <form class='grudge-form'>
+          <section>
+            <article class="input-field">
+              <label>
+                Name:
+                <input id="name-input" placeholder="Who Wronged You" type="text" />
+              </label>
+            </article>
+
+            <article class="input-field">
+              <label>
+                Offense:
+                <input id="deed-input" placeholder="What Did They Do" type="text" />
+              </label>
+            </article>
+          </section>
+
+          <article id="submit">
+            <input class="submit-btn" type="submit" />
+          </article>
+      </form>
+    </section>
+
+    <h3 id="burn-list">BURN LIST</h3>
+    <section class="list-container">
+    </section>
+
+  </body>
+  <script src='scripts.js'></script>
+</html>
