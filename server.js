@@ -34,7 +34,7 @@ app.locals.grudges = [
     name: 'Sam',
     offense: 'eating the last eggo',
     date: 'Thu Feb 23 2017 12:21:11 GMT-0700 (MST)',
-    status: false
+    status: true
   }
 ]
 

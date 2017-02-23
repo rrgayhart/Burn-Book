@@ -1,6 +1,7 @@
 const burnList = $('#burn-list');
 const peopleCount = $('#total-people');
-
+const forgivenCount = $('#total-forgiven');
+const unforgivenCount = $('#total-unforgiven');
 
 $('.submit-btn').on('click', (e) => {
   e.preventDefault();
@@ -24,7 +25,6 @@ const getGrudgesFromServer = () => {
       appendGrudges(grudges)
       countPeople(grudges)
     })
-
 }
 
 const appendGrudges = (grudges) => {
@@ -33,7 +33,6 @@ const appendGrudges = (grudges) => {
     let offense = grudges[i].offense
     let date = grudges[i].date
     let status = grudges[i].status
-    checkStatus(status)
     burnList.append(`<div>
       ${name}
       ${offense}
@@ -43,19 +42,18 @@ const appendGrudges = (grudges) => {
   }
 }
 
-const checkStatus = (status) => {
-  if (status === false) {
-    let status = 'Not Forgiven'
-  } else {
-    let status = 'Forgiven'
-  }
-}
 
 const countPeople = (grudges) => {
   let count = grudges.length
+  let forgiven = grudges.filter(grudges => grudges.status === true).length
+  let unforgiven = grudges.filter(grudges => grudges.status !== true).length
   peopleCount.append(
-    `<div>
-      ${count}
-    </div>`
+    `<span> ${count}</span>`
+  )
+  forgivenCount.append(
+    `<span> ${forgiven}</span>`
+  )
+  unforgivenCount.append(
+    `<span> ${unforgiven}</span>`
   )
 }
