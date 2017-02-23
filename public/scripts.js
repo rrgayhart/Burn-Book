@@ -1,7 +1,11 @@
-const burnList = $('#burn-list');
+const burnList = $('.list-container');
 const peopleCount = $('#total-people');
 const forgivenCount = $('#total-forgiven');
 const unforgivenCount = $('#total-unforgiven');
+
+$(document).ready(function() {
+  getGrudgesFromServer()
+})
 
 $('.submit-btn').on('click', (e) => {
   e.preventDefault();
@@ -12,6 +16,7 @@ $('.submit-btn').on('click', (e) => {
   const date = new Date();
   postGrudgeToServer(name, offense, id, status, date)
   getGrudgesFromServer()
+  clearInputs()
 });
 
 const postGrudgeToServer = (name, offense, id, status, date) => {
@@ -25,6 +30,11 @@ const getGrudgesFromServer = () => {
       appendGrudges(grudges)
       countPeople(grudges)
     })
+}
+
+const clearInputs = () => {
+  $('#name-input').val('');
+  $('#offense-input').val('');
 }
 
 const appendGrudges = (grudges) => {
@@ -41,7 +51,6 @@ const appendGrudges = (grudges) => {
       </div>`)
   }
 }
-
 
 const countPeople = (grudges) => {
   let count = grudges.length
