@@ -1,0 +1,28 @@
+{
+  "name": "burn-book",
+  "version": "1.0.0",
+  "description": "Mod 4 final assessment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChelseaSkovgaard/Burn-Book.git"
+  },
+  "author": "Chelsea Skovgaard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChelseaSkovgaard/Burn-Book/issues"
+  },
+  "homepage": "https://github.com/ChelseaSkovgaard/Burn-Book#readme",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.2.0"
+  }
+}
