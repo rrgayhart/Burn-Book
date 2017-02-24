@@ -1,0 +1,63 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  font-size: 18px;
+}
+
+h1 {
+  font-size:  40px;
+  font-weight: bold;
+  text-align: center;
+  margin: 30px;
+}
+
+input {
+  font-size: 18px;
+}
+
+.grudge-form {
+  margin: 20px;
+
+}
+
+.input-field, #sorting-btns, #counts-display {
+  margin: 10px;
+
+}
+
+.submit-btn {
+  border: 3px solid black;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.burn-item {
+  margin: 10px;
+  text-align: left;
+}
+.burn-category {
+  font-weight: bold;
+}
+
+.list-container {
+  margin: auto;
+  width: 60%;
+}
+#instructions {
+  margin: 10px;
+}
+
+#burn-list-header {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+#sort-name-btn, #sort-date-btn {
+  border: 2px solid black;
+  font-size: 16px;
+}
+
+#counts-display article {
+  margin: 10px;
+  display: inline-block;
+}

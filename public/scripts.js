@@ -34,6 +34,15 @@ const postGrudgeToServer = (name, offense, status, id, date) => {
   axios.post('/api/grudges', { name, offense, status, id, date })
 }
 
+const getGrudgesFromServer = () => {
+  axios.get('/api/grudges')
+  .then(response => {
+    let grudges = response.data
+    appendGrudges(grudges)
+    countPeople(grudges)
+  })
+}
+
 const sortGrudgesName = () => {
   axios.get('/api/grudges')
     .then(response => {
@@ -47,15 +56,6 @@ const sortGrudgesDate = () => {
     .then(response => {
       let grudges = response.data
       sortByDate(grudges)
-    })
-}
-
-const getGrudgesFromServer = () => {
-  axios.get('/api/grudges')
-    .then(response => {
-      let grudges = response.data
-      appendGrudges(grudges)
-      countPeople(grudges)
     })
 }
 
@@ -79,12 +79,30 @@ const appendGrudges = (grudges) => {
     let date = grudges[i].date
     let status = grudges[i].status
     let id = grudges[i].id
-    burnList.append(`<div>
-      ${name}
-      ${offense}
-      ${date}
-      ${status}
-      </div>`)
+    burnList.append(`<article class="burn-item">
+      <h4>
+        <span class="burn-category">
+          Name:
+        </span>
+        ${name}
+      </h4>
+      <p>
+        <span class="burn-category">
+          Offense:
+        </span>
+        ${offense}
+      </p>
+      <p>
+        <span class="burn-category">
+          Date:
+        </span>
+        ${date}
+      </p>
+      <p>
+        <span class="burn-category"> Forgiveness Status: </span>
+        ${status}
+      </p>
+      </article>`)
   }
 }
 
