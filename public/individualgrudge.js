@@ -2,7 +2,6 @@ const burnDetails = $('.individual-grudge');
 
 $(document).ready(function() {
   const id = parseInt(window.location.pathname.split("/")[1]);
-  console.log(id);
   getIndividualGrudgeFromServer(id)
 })
 
@@ -47,7 +46,7 @@ const appendGrudge = (grudge) => {
       </p>
       <p>
         <span class="burn-category">
-          Date:
+          Date Added:
         </span>
         ${date}
       </p>
@@ -55,6 +54,6 @@ const appendGrudge = (grudge) => {
         <span class="burn-category"> Forgiven: </span>
         ${status}
       </p>
-      <input onClick="updateForgivenessStatus(${id})" type="submit"/>
+      <input class="forgive-btn" onClick="updateForgivenessStatus(${id})" type="submit" value="Forgive"/>
       </article>`)
   }

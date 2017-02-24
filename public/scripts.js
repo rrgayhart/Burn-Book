@@ -16,6 +16,8 @@ $('.submit-btn').on('click', (e) => {
   const id = Date.now()
   postGrudgeToServer(name, offense, id, status, date)
   clearInputs()
+  clearList()
+  getGrudgesFromServer()
 });
 
 $('#sort-name-btn').on('click', (e) => {
