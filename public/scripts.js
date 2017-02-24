@@ -2,28 +2,31 @@ const burnList = $('.list-container');
 const peopleCount = $('#total-people');
 const forgivenCount = $('#total-forgiven');
 const unforgivenCount = $('#total-unforgiven');
+const listContainer = $('.list-container');
+const nameInput = $('#name-input');
+const offenseInput = $('#offense-input');
 
 $(document).ready(function() {
-  getGrudgesFromServer()
+  getGrudgesFromServer();
 })
 
 $('.submit-btn').on('click', (e) => {
   e.preventDefault();
-  const name = $('#name-input').val();
-  const offense = $('#offense-input').val();
+  const name = nameInput.val();
+  const offense = offenseInput.val();
   const status = false;
   const date = new Date();
-  const id = $('article.burn-item').length
-  postGrudgeToServer(name, offense, status, id, date)
-  clearInputs()
-  clearList()
-  getGrudgesFromServer()
+  const id = $('article.burn-item').length;
+  postGrudgeToServer(name, offense, status, id, date);
+  clearInputs();
+  clearList();
+  getGrudgesFromServer();
 });
 
 $('#sort-name-btn').on('click', (e) => {
   e.preventDefault();
   clearList();
-  sortGrudgesName()
+  sortGrudgesName();
 });
 
 $('#sort-date-btn').on('click', (e) => {
@@ -39,37 +42,42 @@ const postGrudgeToServer = (name, offense, status, id, date) => {
 const getGrudgesFromServer = () => {
   axios.get('/api/grudges')
   .then(response => {
-    let grudges = response.data
-    appendGrudges(grudges)
-    countPeople(grudges)
+    let grudges = response.data;
+    appendGrudges(grudges);
+    countPeople(grudges);
   })
 }
 
 const sortGrudgesName = () => {
   axios.get('/api/grudges')
     .then(response => {
-      let grudges = response.data
-      sortByName(grudges)
+      let grudges = response.data;
+      sortByName(grudges);
     })
 }
 
 const sortGrudgesDate = () => {
   axios.get('/api/grudges')
     .then(response => {
-      let grudges = response.data
-      sortByDate(grudges)
+      let grudges = response.data;
+      sortByDate(grudges);
     })
 }
 
 const clearInputs = () => {
-  $('#name-input').val('');
-  $('#offense-input').val('');
+  nameInput.val('');
+  offenseInput.val('');
 }
 
 const clearList = () => {
-  $('.list-container').html('')
+  listContainer.html('');
 }
 
+const clearCount = () => {
+  peopleCount.html('');
+  forgivenCount.html('');
+  unforgivenCount.html('');
+}
 const appendGrudges = (grudges) => {
   for (var i = 0; i < grudges.length; i++) {
     let name = grudges[i].name
@@ -90,15 +98,6 @@ const appendGrudges = (grudges) => {
   }
 }
 
-const getGrudgeDetails = (grudges, id) => {
-  axios.get('/api/grudges/:id')
-  .then(response => {
-    let grudges = response.data
-    appendGrudges(grudges)
-    countPeople(grudges)
-  })
-}
-
 const sortByName = (grudges) => {
   let sortedGrudges = grudges.sort((a, b) => {
     const nameA = a.name.toUpperCase();
@@ -111,7 +110,7 @@ const sortByName = (grudges) => {
       return 0;
     }
     });
-  appendGrudges(sortedGrudges)
+  appendGrudges(sortedGrudges);
 }
 
 const sortByDate = (grudges) => {
@@ -126,20 +125,21 @@ const sortByDate = (grudges) => {
       return 0;
     }
     });
-  appendGrudges(sortedGrudges)
+  appendGrudges(sortedGrudges);
 }
 
 const countPeople = (grudges) => {
-  let count = grudges.length
-  let forgiven = grudges.filter(grudges => grudges.status === true).length
-  let unforgiven = grudges.filter(grudges => grudges.status !== true).length
+  clearCount();
+  let count = grudges.length;
+  let forgiven = grudges.filter(grudges => grudges.status === true).length;
+  let unforgiven = grudges.filter(grudges => grudges.status !== true).length;
   peopleCount.append(
-    `<span> ${count}</span>`
+    `<span> ${count} </span>`
   )
   forgivenCount.append(
-    `<span> ${forgiven}</span>`
+    `<span> ${forgiven} </span>`
   )
   unforgivenCount.append(
-    `<span> ${unforgiven}</span>`
+    `<span> ${unforgiven} </span>`
   )
 }
