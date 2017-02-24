@@ -60,3 +60,26 @@ describe('POST /api/grudge', function() {
     });
   });
 });
+
+describe('PUT /api/grudges/:id', function() {
+  it('should update a grudge', function(done) {
+    chai.request(server)
+    .put('/api/grudges/0')
+    .end(function(err, res) {
+      res.should.have.status(200);
+      res.should.be.json;
+    done();
+    });
+  });
+});
+
+describe('PUT /api/grudges/:id', function() {
+  xit('should return an error status if id does not match a grudge', function(done) {
+    chai.request(server)
+    .put('/api/grudges/3')
+    .end(function(err, res) {
+      res.should.have.status(404);
+    done();
+    });
+  });
+});
