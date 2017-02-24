@@ -21,19 +21,32 @@ $('.submit-btn').on('click', (e) => {
 $('#sort-name-btn').on('click', (e) => {
   e.preventDefault();
   clearList();
-  sortGrudgesFromServer()
-})
+  sortGrudgesName()
+});
+
+$('#sort-date-btn').on('click', (e) => {
+  e.preventDefault();
+  clearList();
+  sortGrudgesDate();
+});
 
 const postGrudgeToServer = (name, offense, status, id, date) => {
   axios.post('/api/grudges', { name, offense, status, id, date })
 }
 
-const sortGrudgesFromServer = () => {
+const sortGrudgesName = () => {
   axios.get('/api/grudges')
     .then(response => {
       let grudges = response.data
       sortByName(grudges)
-      countPeople(grudges)
+    })
+}
+
+const sortGrudgesDate = () => {
+  axios.get('/api/grudges')
+    .then(response => {
+      let grudges = response.data
+      sortByDate(grudges)
     })
 }
 
@@ -82,6 +95,21 @@ const sortByName = (grudges) => {
     if (nameA > nameB) {
       return 1;
     } else if (nameB > nameA) {
+      return -1;
+    } else {
+      return 0;
+    }
+    });
+  appendGrudges(sortedGrudges)
+}
+
+const sortByDate = (grudges) => {
+  let sortedGrudges = grudges.sort((a, b) => {
+    const dateA = a.date;
+    const dateB = b.date;
+    if (dateA > dateB) {
+      return 1;
+    } else if (dateB > dateA) {
       return -1;
     } else {
       return 0;
