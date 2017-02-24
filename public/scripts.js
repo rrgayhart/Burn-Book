@@ -32,7 +32,6 @@ $('#sort-date-btn').on('click', (e) => {
   sortGrudgesDate();
 });
 
-
 const postGrudgeToServer = (name, offense, status, id, date) => {
   axios.post('/api/grudges', { name, offense, status, id, date })
 }
@@ -60,10 +59,6 @@ const sortGrudgesDate = () => {
       let grudges = response.data
       sortByDate(grudges)
     })
-}
-
-const updateForgivenessStatus = (id) => {
-  axios.put('/api/grudges/${id}')
 }
 
 const clearInputs = () => {
