@@ -24,7 +24,7 @@
             <article class="input-field">
               <label>
                 Offense:
-                <input id="offense-input" placeholder="What Did They Do" type="text" />
+                <input id="offense-input" placeholder="What They Did" type="text" />
               </label>
             </article>
           </section>
@@ -35,20 +35,27 @@
       </form>
     </section>
 
-    <section>
+    <h3 id="burn-list-header">BURN LIST</h3>
+
+    <section id="sorting-btns">
       <button id="sort-name-btn">
         Sort by Name
       </button>
       <button id="sort-date-btn">
-        Sort by Date (Most Recent First)
+        Sort by Date </br>
       </button>
     </section>
 
-    <h3 id="burn-list">BURN LIST</h3>
-    <section>
-      Total People: <span id="total-people"></span>
-      Total Forgiven: <span id="total-forgiven"></span>
-      Total Unforgiven: <span id="total-unforgiven"></span>
+    <section id="counts-display">
+      <article>
+        Total People in the Book: <span id="total-people"></span>
+      </article>
+      <article>
+        Total People Forgiven: <span id="total-forgiven"></span>
+      </article>
+      <article>
+        Total People Unforgiven: <span id="total-unforgiven"></span>
+      </article>
     </section>
 
     <section class="list-container">
