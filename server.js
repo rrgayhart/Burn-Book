@@ -42,6 +42,10 @@ app.get('/', (request, response) => {
   response.sendfile(__dirname + '/public/index.html')
 });
 
+app.get('/:id', (request, response) => {
+  response.sendfile(__dirname + '/public/individualgrudge.html')
+});
+
 app.get('/api/grudges', (request, response) => {
   response.status(200).json(app.locals.grudges);
 });
