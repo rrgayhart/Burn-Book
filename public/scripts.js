@@ -13,8 +13,8 @@ $('.submit-btn').on('click', (e) => {
   const offense = $('#offense-input').val();
   const status = false;
   const date = new Date();
-  const id = Date.now()
-  postGrudgeToServer(name, offense, id, status, date)
+  const id = $('article.burn-item').length
+  postGrudgeToServer(name, offense, status, id, date)
   clearInputs()
   clearList()
   getGrudgesFromServer()
