@@ -11,16 +11,30 @@ $('.submit-btn').on('click', (e) => {
   e.preventDefault();
   const name = $('#name-input').val();
   const offense = $('#offense-input').val();
-  const id = Date.now();
   const status = false;
   const date = new Date();
+  const id = Date.now()
   postGrudgeToServer(name, offense, id, status, date)
-  getGrudgesFromServer()
   clearInputs()
 });
 
-const postGrudgeToServer = (name, offense, id, status, date) => {
-  axios.post('/api/grudges', { name, offense, id, status, date })
+$('#sort-name-btn').on('click', (e) => {
+  e.preventDefault();
+  clearList();
+  sortGrudgesFromServer()
+})
+
+const postGrudgeToServer = (name, offense, status, id, date) => {
+  axios.post('/api/grudges', { name, offense, status, id, date })
+}
+
+const sortGrudgesFromServer = () => {
+  axios.get('/api/grudges')
+    .then(response => {
+      let grudges = response.data
+      sortByName(grudges)
+      countPeople(grudges)
+    })
 }
 
 const getGrudgesFromServer = () => {
@@ -32,9 +46,17 @@ const getGrudgesFromServer = () => {
     })
 }
 
+const updateForgivenessStatus = (id) => {
+  axios.put('/api/grudges/:id', {id})
+}
+
 const clearInputs = () => {
   $('#name-input').val('');
   $('#offense-input').val('');
+}
+
+const clearList = () => {
+  $('.list-container').html('')
 }
 
 const appendGrudges = (grudges) => {
@@ -43,6 +65,7 @@ const appendGrudges = (grudges) => {
     let offense = grudges[i].offense
     let date = grudges[i].date
     let status = grudges[i].status
+    let id = grudges[i].id
     burnList.append(`<div>
       ${name}
       ${offense}
@@ -50,6 +73,21 @@ const appendGrudges = (grudges) => {
       ${status}
       </div>`)
   }
+}
+
+const sortByName = (grudges) => {
+  let sortedGrudges = grudges.sort((a, b) => {
+    const nameA = a.name.toUpperCase();
+    const nameB = b.name.toUpperCase();
+    if (nameA > nameB) {
+      return 1;
+    } else if (nameB > nameA) {
+      return -1;
+    } else {
+      return 0;
+    }
+    });
+  appendGrudges(sortedGrudges)
 }
 
 const countPeople = (grudges) => {

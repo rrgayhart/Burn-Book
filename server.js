@@ -60,5 +60,19 @@ app.post('/api/grudges', (request, response) => {
   response.status(200).json(app.locals.grudges);
 });
 
+app.put('/api/grudges/:id', (req, res) => {
+  const { id } = req.params
+  const { status } = req.body
+  const grudge = app.locals.grudges[id]
+  if (!grudge) { return response.sendStatus(404); }
+
+  const updateGrudges = app.locals.grudges.map(grudge => {
+    if(grudge.id === parseInt(id)) grudge.status = true
+    return grudge
+  })
+
+  app.locals.grudges = updateGrudges
+  res.status(200).json(app.locals.grudges)
+})
 
 module.exports = app;
