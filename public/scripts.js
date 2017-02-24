@@ -16,6 +16,8 @@ $('.submit-btn').on('click', (e) => {
   const id = Date.now()
   postGrudgeToServer(name, offense, id, status, date)
   clearInputs()
+  clearList()
+  getGrudgesFromServer()
 });
 
 $('#sort-name-btn').on('click', (e) => {
@@ -59,10 +61,6 @@ const sortGrudgesDate = () => {
     })
 }
 
-const updateForgivenessStatus = (id) => {
-  axios.put('/api/grudges/:id', {id})
-}
-
 const clearInputs = () => {
   $('#name-input').val('');
   $('#offense-input').val('');
@@ -80,30 +78,25 @@ const appendGrudges = (grudges) => {
     let status = grudges[i].status
     let id = grudges[i].id
     burnList.append(`<article class="burn-item">
-      <h4>
-        <span class="burn-category">
-          Name:
-        </span>
-        ${name}
-      </h4>
-      <p>
-        <span class="burn-category">
-          Offense:
-        </span>
-        ${offense}
-      </p>
-      <p>
-        <span class="burn-category">
-          Date:
-        </span>
-        ${date}
-      </p>
-      <p>
-        <span class="burn-category"> Forgiveness Status: </span>
-        ${status}
-      </p>
+      <a href=/${id}>
+        <h4>
+          <span class="burn-category" class="name" id=${id}>
+            Name:
+          </span>
+          ${name}
+        </h4>
+      </a>
       </article>`)
   }
+}
+
+const getGrudgeDetails = (grudges, id) => {
+  axios.get('/api/grudges/:id')
+  .then(response => {
+    let grudges = response.data
+    appendGrudges(grudges)
+    countPeople(grudges)
+  })
 }
 
 const sortByName = (grudges) => {

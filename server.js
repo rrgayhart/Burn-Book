@@ -23,14 +23,14 @@ const server = http.createServer(app)
 
 app.locals.grudges = [
   {
-    id: 1,
+    id: 0,
     name: 'Chloe',
     offense: 'stinky farts',
     date: 'Thu Feb 23 2017 12:21:11 GMT-0700 (MST)',
     status: false
   },
   {
-    id: 2,
+    id: 1,
     name: 'Sam',
     offense: 'eating the last eggo',
     date: 'Thu Feb 23 2017 12:21:11 GMT-0700 (MST)',
@@ -40,6 +40,10 @@ app.locals.grudges = [
 
 app.get('/', (request, response) => {
   response.sendfile(__dirname + '/public/index.html')
+});
+
+app.get('/:id', (request, response) => {
+  response.sendfile(__dirname + '/public/individualgrudge.html')
 });
 
 app.get('/api/grudges', (request, response) => {
