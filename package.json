@@ -4,12 +4,12 @@
   "description": "Mod 4 final assessment",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha; open 'public/test/test.html'",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ChelseaSkovgaard/Burn-Book.git"
+    "url": ""
   },
   "author": "Chelsea Skovgaard",
   "license": "ISC",
