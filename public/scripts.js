@@ -60,7 +60,7 @@ const sortGrudgesDate = () => {
   axios.get('/api/grudges')
     .then(response => {
       let grudges = response.data;
-      sortByDate(grudges);
+      appendSortedByDate(grudges);
     })
 }
 
@@ -114,7 +114,7 @@ const sortByName = (grudges) => {
 }
 
 const sortByDate = (grudges) => {
-  let sortedGrudges = grudges.sort((a, b) => {
+  return grudges.sort((a, b) => {
     const dateA = a.date;
     const dateB = b.date;
     if (dateA > dateB) {
@@ -124,7 +124,11 @@ const sortByDate = (grudges) => {
     } else {
       return 0;
     }
-    });
+  });
+}
+
+function appendSortedByDate(grudges){
+  var sortedGrudges = appendSortedByDate(grudges)
   appendGrudges(sortedGrudges);
 }
 
@@ -140,4 +144,10 @@ const countPeople = (grudges) => {
   unforgivenCount.append(
     `<span> ${counts.unforgiven} </span>`
   )
+}
+
+if(typeof module !== 'undefined') {
+  module.exports = {
+   sortByDate
+  }
 }
