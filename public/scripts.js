@@ -130,16 +130,14 @@ const sortByDate = (grudges) => {
 
 const countPeople = (grudges) => {
   clearCount();
-  let count = grudges.length;
-  let forgiven = grudges.filter(grudges => grudges.status === true).length;
-  let unforgiven = grudges.filter(grudges => grudges.status !== true).length;
+  const counts = returnCounts(grudges)
   peopleCount.append(
-    `<span> ${count} </span>`
+    `<span> ${counts.total} </span>`
   )
   forgivenCount.append(
-    `<span> ${forgiven} </span>`
+    `<span> ${counts.forgiven} </span>`
   )
   unforgivenCount.append(
-    `<span> ${unforgiven} </span>`
+    `<span> ${counts.unforgiven} </span>`
   )
 }
