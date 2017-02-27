@@ -85,16 +85,8 @@ const appendGrudges = (grudges) => {
     let date = grudges[i].date
     let status = grudges[i].status
     let id = grudges[i].id
-    burnList.append(`<article class="burn-item">
-      <a href=/${id}>
-        <h4>
-          <span class="burn-category" class="name" id=${id}>
-            Name:
-          </span>
-          ${name}
-        </h4>
-      </a>
-      </article>`)
+    let burn = burnTemplate(id, name)
+    burnList.append(burn)
   }
 }
 
