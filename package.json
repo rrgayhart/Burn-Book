@@ -4,7 +4,8 @@
   "description": "Mod 4 final assessment",
   "main": "index.js",
   "scripts": {
-    "test": "mocha; open 'public/test/test.html'",
+    "test": "mocha",
+    "all-tests": "npm test; open 'public/test/test.html'",
     "start": "node server.js"
   },
   "repository": {
