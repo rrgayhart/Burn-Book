@@ -81,20 +81,9 @@ const clearCount = () => {
 const appendGrudges = (grudges) => {
   for (var i = 0; i < grudges.length; i++) {
     let name = grudges[i].name
-    let offense = grudges[i].offense
-    let date = grudges[i].date
-    let status = grudges[i].status
     let id = grudges[i].id
-    burnList.append(`<article class="burn-item">
-      <a href=/${id}>
-        <h4>
-          <span class="burn-category" class="name" id=${id}>
-            Name:
-          </span>
-          ${name}
-        </h4>
-      </a>
-      </article>`)
+    let grudgeT = grudgeTemplate(id, name);
+    burnList.append(grudgeT);
   }
 }
 

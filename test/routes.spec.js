@@ -74,7 +74,7 @@ describe('PUT /api/grudges/:id', function() {
 });
 
 describe('PUT /api/grudges/:id', function() {
-  xit('should return an error status if id does not match a grudge', function(done) {
+  it('should return an error status if id does not match a grudge', function(done) {
     chai.request(server)
     .put('/api/grudges/3')
     .end(function(err, res) {
